@@ -1337,3 +1337,85 @@ strong {
         font-size: 1.1rem;
     }
 }
+
+/* PRISTUPAČNE KLASE */
+
+/* Istakni naslove */
+body.highlight-headings h1,
+body.highlight-headings h2,
+body.highlight-headings h3 {
+  background: #ffff00 !important;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* Istakni linkove */
+body.highlight-links a {
+  background: #ffcccc;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+/* Vođica za čitanje */
+body.reading-guide-line {
+  position: relative;
+}
+
+body.reading-guide-line::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: rgba(255, 255, 0, 0.2);
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5000;
+}
+
+/* ADHD modus */
+body.adhd-friendly {
+  background: #f5f5f5 !important;
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+}
+
+body.adhd-friendly .accessibility-widget {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Epilepsija sigurnost */
+body.seizure-safe {
+  filter: brightness(0.95);
+}
+
+body.seizure-safe * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Pojačana saturacija */
+body.high-saturation {
+  filter: saturate(1.5);
+}
+
+/* Enhanced focus */
+body.visual-focus *:focus {
+  box-shadow: inset 0 0 0 3px #ff0000;
+}
+
+/* OpenDyslexic font */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/opendyslexic/fonts/OpenDyslexic-Regular.ttf') format('truetype');
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
