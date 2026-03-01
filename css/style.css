@@ -1,4 +1,581 @@
 /* ============================================
+   ANIMIRANI TEKST U KRUG
+   ============================================ */
+
+.rotating-text-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem;
+}
+
+.rotating-text-svg {
+    width: 100%;
+    height: 100%;
+    animation: rotateText 20s linear infinite;
+}
+
+.rotating-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 4px;
+    fill: #00ff99;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: none;
+}
+
+@keyframes rotateText {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animacija samog SVG elementa */
+.rotating-text-svg {
+    transform-origin: center;
+    animation: rotateSvg 30s linear infinite;
+}
+
+@keyframes rotateSvg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   HERO SEKCIJA
+   ============================================ */
+
+.hero-section {
+    background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+    color: #000;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.hero-content .description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #000;
+    color: #00ff99;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border: 2px solid #000;
+}
+
+.btn-secondary:hover {
+    background: #fff;
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   ABOUT SEKCIJA
+   ============================================ */
+
+.about-section {
+    background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+}
+
+.about-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* ============================================
+   WEB ALATI - GRID
+   ============================================ */
+
+.web-tools-section {
+    background: #fafafa;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+.tools-category {
+    margin-bottom: 4rem;
+}
+
+.tools-category h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+    border-bottom: 3px solid #00ff99;
+    padding-bottom: 0.8rem;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.tool-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+    border-top: 4px solid #00ff99;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 255, 153, 0.2);
+    border-top-color: #00ffcc;
+}
+
+.tool-icon {
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+}
+
+.tool-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.tool-card > p:first-of-type {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.tool-card > p:nth-of-type(2) {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+}
+
+.tool-features {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.tool-features strong {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: #222;
+    font-size: 0.98rem;
+}
+
+.tool-features ul {
+    margin-left: 1.2rem;
+    margin-bottom: 0;
+}
+
+.tool-features li {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-link {
+    background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+    color: #000;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s;
+    align-self: flex-start;
+}
+
+.btn-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.3);
+}
+
+/* ============================================
+   KONTAKT SEKCIJA
+   ============================================ */
+
+.contact-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+}
+
+.contact-info {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 4px;
+    border-left: 5px solid #0088ff;
+}
+
+.contact-info p {
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+}
+
+.contact-info a {
+    color: #0088ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+
+@media (max-width: 768px) {
+    .rotating-text-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .rotating-text {
+        font-size: 14px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .tool-card {
+        padding: 1.5rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+
+@media (max-width: 480px) {
+    .rotating-text-container {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 1.5rem;
+    }
+
+    .rotating-text {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-content .description {
+        font-size: 1rem;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tool-card {
+        padding: 1.2rem;
+    }
+
+    .tool-icon {
+        font-size: 2.5rem;
+    }
+
+    .tool-card h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   OSNOVNI STILOVI (ostatak)
+   ============================================ */
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.65;
+    color: #222;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.section {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+    border-bottom: 3px solid #00ff99;
+    padding-bottom: 1rem;
+}
+
+.section h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem 0;
+    color: #222;
+}
+
+.section p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.section ul {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.section li {
+    margin-bottom: 0.8rem;
+}
+
+/* Back to top */
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    background-color: #00ff99;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover, .back-to-top:focus {
+    background-color: #00ffcc;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
+}
+
+/* Footer */
+.footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+/* Kolačići banner */
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #232323 0%, #1a1a1a 100%);
+    color: #fff;
+    z-index: 9999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cookie-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.cookie-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.cookie-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+}
+
+.cookie-more {
+    color: #00ff99;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.cookie-btn {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.accept-btn {
+    background-color: #00ff99;
+    color: #000;
+}
+
+.accept-btn:hover {
+    background-color: #00ffcc;
+}
+
+.reject-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.reject-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Skip to content */
+.pojo-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    font-weight: 600;
+}
+
+.pojo-skip-link:focus {
+    left: 0;
+    outline: 3px solid #00ff99;
+}
+/* ============================================
    OSNOVNI RESET & ZAJEDNIČKI STILOVI
    ============================================ */
 
