@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prijava na privatni dio web stranice">
+    <title>Prijava – Privatni prostor</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Skip to content -->
+    <a id="pojo-a11y-skip-content" class="pojo-skip-link" tabindex="1" accesskey="s" href="#main-content" role="link">Preskoči na sadržaj</a>
+
+    <main id="main-content" class="main-content">
+        <header class="header">
+            <h1>🔐 Prijava na sustav</h1>
+            <p class="tagline">Privatni prostor za registrirane korisnike</p>
+        </header>
+
+        <section class="section login-section">
+            
+            <!-- PORUKA GREŠKE - Uvijek se prikazuje prvi put -->
+            <div id="error-message" class="error-message" style="display:none;">
+                <strong>⚠️ Podaci nisu točni!</strong>
+                <p>Molimo provjerite korisničko ime i lozinku.</p>
+            </div>
+
+            <!-- PORUKA USPJEHA -->
+            <div id="success-message" class="success-message" style="display:none;">
+                <strong>✅ Uspješno ste se ulogirani!</strong>
+                <p>Preusmjeravanje na dashboard...</p>
+            </div>
+
+            <!-- LOGIN FORMA -->
+            <form id="login-form" class="login-form">
+                
+                <div class="form-group">
+                    <label for="username">Korisničko ime ili email:</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        required 
+                        placeholder="npr. mario ili mario@example.com"
+                        aria-label="Korisničko ime"
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Lozinka:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        placeholder="Unesite lozinku"
+                        aria-label="Lozinka"
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div class="form-group checkbox">
+                    <input 
+                        type="checkbox" 
+                        id="remember" 
+                        name="remember" 
+                    >
+                    <label for="remember">Zapamti me na ovom uređaju (30 dana)</label>
+                </div>
+
+                <button type="submit" class="btn-submit">Prijava</button>
+            </form>
+
+            <!-- DEMO PODACI -->
+            <div class="demo-info">
+                <h3>🧪 Testni podaci:</h3>
+                <ul>
+                    <li><strong>Korisničko ime:</strong> mario</li>
+                    <li><strong>Lozinka:</strong> password</li>
+                </ul>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    ℹ️ <em>Napomena: Prvi pokušaj logiranja će pokazati grešku kao sigurnosna provjera. 
+                    Pokušajte ponovno sa točnim podacima.</em>
+                </p>
+            </div>
+
+            <!-- POVRATAK NA POČETNU -->
+            <p class="login-footer">
+                <a href="index.html">← Povratak na početnu stranicu</a>
+            </p>
+        </section>
+    </main>
+
+    <!-- Back to top -->
+    <button id="backToTop" class="back-to-top" aria-label="Vrati se na vrh stranice">↑</button>
+
+    <footer class="footer">
+        <p><small>&copy; 2026. Privatni prostor. Sva prava zadržana.</small></p>
+    </footer>
+
+    <!-- JAVASCRIPT - Login logika -->
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+
+            const errorMsg = document.getElementById('error-message');
+            const successMsg = document.getElementById('success-message');
+
+            // Prvo: Uvijek prikaži grešku
+            errorMsg.style.display = 'block';
+            successMsg.style.display = 'none';
+
+            // Čekaj 1.5 sekunde, pa pokušaj stvarnu prijavu
+            setTimeout(() => {
+                // Provjera je li prvi pokušaj (uvijek prikaži grešku prvi put)
+                if (!sessionStorage.getItem('first_attempt')) {
+                    sessionStorage.setItem('first_attempt', 'true');
+                    // Prikaži grešku i vrati se na formu
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    document.getElementById('username').focus();
+                    return;
+                }
+
+                // Drugi pokušaj - provjeri kredencijale
+                const validUsers = {
+                    'mario': 'password',
+                    'mario@example.com': 'password',
+                    'test': 'password',
+                    'test@example.com': 'password'
+                };
+
+                // Provjera kredencijala
+                if (validUsers[username] && validUsers[username] === password) {
+                    // USPJEŠNA PRIJAVA
+                    errorMsg.style.display = 'none';
+                    successMsg.style.display = 'block';
+
+                    // Spremi podatke u localStorage
+                    const userData = {
+                        username: username,
+                        login_time: new Date().toLocaleString('hr-HR'),
+                        remember: remember
+                    };
+
+                    localStorage.setItem('user_data', JSON.stringify(userData));
+                    localStorage.setItem('logged_in', 'true');
+
+                    // Ako je odabran "Zapamti me"
+                    if (remember) {
+                        localStorage.setItem('remember_token', 'token_' + Date.now());
+                    }
+
+                    // Redirekcija nakon 1.5 sekunde
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+
+                } else {
+                    // NEUSPJEŠNA PRIJAVA
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                    document.getElementById('password').value = '';
+                    document.getElementById('username').focus();
+                }
+            }, 1500);
+        });
+
+        // Back to top
+        var backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
