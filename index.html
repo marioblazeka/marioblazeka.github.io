@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mario Blažeka - Osobna web stranica | Web aplikacije - Edukativni sadržaj sa web alatima">
-    <meta name="author" content="Mario Blažeka">
-    <meta name="keywords" content="web aplikacije, edukacija, kolegij, HTML, CSS, JavaScript, web alati">
     <title>Mario Blažeka – Osobna web stranica | Web aplikacije</title>
     
     <!-- FAVICON - sa tekstom -->
@@ -36,8 +34,28 @@
 
     <main id="main-content" class="main-content" tabindex="-1">
 
-        <!-- HERO SEKCIJA -->
+        <!-- HERO SEKCIJA SA ANIMIRANIM TEKSTOM -->
         <header class="header hero-section">
+            
+            <!-- KREIRAJUĆI TEKST - Animirani tekst u krug -->
+            <div class="rotating-text-container">
+                <svg viewBox="0 0 300 300" class="rotating-text-svg">
+                    <!-- Cirkularna putanja za tekst -->
+                    <defs>
+                        <path id="circlePath" 
+                              d="M 150, 150 m -120, 0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0" 
+                              fill="none" />
+                    </defs>
+                    
+                    <!-- Tekst koji se vrti u krug -->
+                    <text class="rotating-text" font-size="18" font-weight="bold" fill="#00ff99" letter-spacing="4">
+                        <textPath href="#circlePath" startOffset="0%" text-anchor="middle">
+                            ★ Mario Blažeka : Mario Blažeka osobna Web stranica, primjer sa raznim web alatima za edukaciju! Informativni sadržaj za kolegij Web aplikacije!!! ★
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+
             <div class="hero-content">
                 <h1>Mario Blažeka</h1>
                 <p class="subtitle">🎓 Osobna web stranica | Kolegij: Web aplikacije</p>
@@ -61,128 +79,105 @@
                     Na ovoj stranici ćete pronaći edukativne materijale, primjere koda i pregled 
                     <strong>raznih web alata</strong> koji se koriste u modernoj web razvoj praksi.
                 </p>
-                <p>
-                    Cilj je pružiti vam <strong>praktičan uvid</strong> u tehnologije i alate koji se koriste 
-                    svakodnevno u razvoju web aplikacija.
-                </p>
             </div>
         </section>
 
-        <!-- WEB ALATI - GLAVNA SEKCIJA -->
+        <!-- WEB ALATI SEKCIJA -->
         <section id="web-alati" class="section web-tools-section" aria-labelledby="tools-title">
             <h2 id="tools-title">🛠️ Web alati za edukaciju</h2>
             <p class="intro-text">
                 Evo pregleda najvažnijih web alata koji se koriste u kolegiju <strong>Web aplikacije</strong>:
             </p>
 
-            <!-- KATEGORIJA 1: Frontend -->
+            <!-- FRONTEND -->
             <div class="tools-category">
                 <h3>📱 Frontend - Rad sa korisničkim sučeljem</h3>
-                
                 <div class="tools-grid">
-                    <!-- HTML5 -->
                     <div class="tool-card">
                         <div class="tool-icon">🏗️</div>
                         <h4>HTML5</h4>
                         <p><strong>Verzija:</strong> HTML5 (2024)</p>
-                        <p><strong>Opis:</strong> Osnovna struktura web stranica. Koristi se za označavanje sadržaja.</p>
+                        <p><strong>Opis:</strong> Osnovna struktura web stranica.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Semantički HTML elementi</li>
                                 <li>Multimedija (audio, video)</li>
                                 <li>Forme i validacija</li>
-                                <li>Canvas za grafiku</li>
                             </ul>
                         </div>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- CSS3 -->
                     <div class="tool-card">
                         <div class="tool-icon">🎨</div>
                         <h4>CSS3</h4>
                         <p><strong>Verzija:</strong> CSS3 (Moduli)</p>
-                        <p><strong>Opis:</strong> Stilizacija i responsive dizajn web stranica.</p>
+                        <p><strong>Opis:</strong> Stilizacija i responsive dizajn.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Flexbox & Grid sustavi</li>
                                 <li>Animacije i prijelazi</li>
                                 <li>Media queries (responsive)</li>
-                                <li>CSS varijable</li>
                             </ul>
                         </div>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- JavaScript -->
                     <div class="tool-card">
                         <div class="tool-icon">⚡</div>
                         <h4>JavaScript (ES6+)</h4>
                         <p><strong>Verzija:</strong> ECMAScript 2024</p>
-                        <p><strong>Opis:</strong> Programski jezik za interaktivnost na web stranicama.</p>
+                        <p><strong>Opis:</strong> Interaktivnost na web stranicama.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>DOM manipulacija</li>
                                 <li>Event handling</li>
-                                <li>Asinkroni kod (Promises, async/await)</li>
                                 <li>REST API pozivi</li>
                             </ul>
                         </div>
                         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Bootstrap -->
                     <div class="tool-card">
                         <div class="tool-icon">📦</div>
                         <h4>Bootstrap 5</h4>
                         <p><strong>Verzija:</strong> 5.3.x</p>
-                        <p><strong>Opis:</strong> CSS framework za brzu izraduo responsive web stranica.</p>
+                        <p><strong>Opis:</strong> CSS framework za brzu izradou responsive web stranica.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Grid sistem (12 stupaca)</li>
                                 <li>Gotove komponente</li>
                                 <li>Responsive breakpoints</li>
-                                <li>CSS i JS plugini</li>
                             </ul>
                         </div>
                         <a href="https://getbootstrap.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- React -->
                     <div class="tool-card">
                         <div class="tool-icon">⚛️</div>
                         <h4>React.js</h4>
                         <p><strong>Verzija:</strong> 18.x</p>
-                        <p><strong>Opis:</strong> JavaScript biblioteka za izgradnju interaktivnih sučelja.</p>
+                        <p><strong>Opis:</strong> Biblioteka za izgradnju interaktivnih sučelja.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Komponente i JSX</li>
                                 <li>State management</li>
-                                <li>Hooks (useState, useEffect)</li>
-                                <li>Virtual DOM</li>
+                                <li>Hooks</li>
                             </ul>
                         </div>
                         <a href="https://react.dev/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Vue.js -->
                     <div class="tool-card">
                         <div class="tool-icon">💚</div>
                         <h4>Vue.js</h4>
                         <p><strong>Verzija:</strong> 3.x</p>
-                        <p><strong>Opis:</strong> Progressive framework za izgradnju web aplikacija.</p>
+                        <p><strong>Opis:</strong> Progressive framework za web aplikacije.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Reaktivni podaci</li>
                                 <li>Two-way binding</li>
-                                <li>Direktivne (v-if, v-for)</li>
-                                <li>Composables</li>
+                                <li>Direktivne</li>
                             </ul>
                         </div>
                         <a href="https://vuejs.org/" target="_blank" class="btn-link">Saznaj više →</a>
@@ -190,114 +185,95 @@
                 </div>
             </div>
 
-            <!-- KATEGORIJA 2: Backend -->
+            <!-- BACKEND -->
             <div class="tools-category">
                 <h3>🖥️ Backend - Server-side razvoj</h3>
-                
                 <div class="tools-grid">
-                    <!-- Node.js -->
                     <div class="tool-card">
                         <div class="tool-icon">📧</div>
                         <h4>Node.js</h4>
                         <p><strong>Verzija:</strong> 20.x LTS</p>
                         <p><strong>Opis:</strong> JavaScript runtime za server-side aplikacije.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Non-blocking I/O</li>
                                 <li>Event-driven arhitektura</li>
                                 <li>NPM ekosistem</li>
-                                <li>Mikro-servisi</li>
                             </ul>
                         </div>
                         <a href="https://nodejs.org/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Express.js -->
                     <div class="tool-card">
                         <div class="tool-icon">🚀</div>
                         <h4>Express.js</h4>
                         <p><strong>Verzija:</strong> 4.x</p>
                         <p><strong>Opis:</strong> Minimalistički web framework za Node.js.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Routing</li>
                                 <li>Middleware</li>
                                 <li>REST API razvoj</li>
-                                <li>View engines (EJS, Pug)</li>
                             </ul>
                         </div>
                         <a href="https://expressjs.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- PHP -->
                     <div class="tool-card">
                         <div class="tool-icon">🐘</div>
                         <h4>PHP</h4>
                         <p><strong>Verzija:</strong> 8.2+</p>
                         <p><strong>Opis:</strong> Server-side scripting jezik za web razvoj.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Server-side rendering</li>
                                 <li>Baza podataka integracija</li>
                                 <li>Session management</li>
-                                <li>Frameworks (Laravel, Symfony)</li>
                             </ul>
                         </div>
                         <a href="https://www.php.net/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Python -->
                     <div class="tool-card">
                         <div class="tool-icon">🐍</div>
                         <h4>Python</h4>
                         <p><strong>Verzija:</strong> 3.11+</p>
                         <p><strong>Opis:</strong> Fleksibilan jezik za web i podatkovne analize.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Django framework</li>
                                 <li>Flask mikro-framework</li>
-                                <li>Obrada podataka</li>
                                 <li>Artificial Intelligence</li>
                             </ul>
                         </div>
                         <a href="https://www.python.org/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- SQL Baze podataka -->
                     <div class="tool-card">
                         <div class="tool-icon">🗄️</div>
                         <h4>Baze podataka (SQL)</h4>
                         <p><strong>Verzije:</strong> MySQL, PostgreSQL, SQLite</p>
                         <p><strong>Opis:</strong> Pohrana i upravljanje strukturiranim podacima.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>CRUD operacije</li>
                                 <li>Transakcije</li>
                                 <li>Indeksiranje</li>
-                                <li>Sigurnosne mjere</li>
                             </ul>
                         </div>
                         <a href="https://www.mysql.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- MongoDB -->
                     <div class="tool-card">
                         <div class="tool-icon">📄</div>
                         <h4>MongoDB (NoSQL)</h4>
                         <p><strong>Verzija:</strong> 6.x+</p>
                         <p><strong>Opis:</strong> NoSQL baza za fleksibilnu pohranu podataka.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>JSON dokumenti</li>
                                 <li>Skalabilnost</li>
                                 <li>Fleksibilan šema</li>
-                                <li>Agregacijske operacije</li>
                             </ul>
                         </div>
                         <a href="https://www.mongodb.com/" target="_blank" class="btn-link">Saznaj više →</a>
@@ -305,114 +281,95 @@
                 </div>
             </div>
 
-            <!-- KATEGORIJA 3: DevOps i alati -->
+            <!-- DEVOPS -->
             <div class="tools-category">
                 <h3>⚙️ DevOps, verzioniranje i alati</h3>
-                
                 <div class="tools-grid">
-                    <!-- Git -->
                     <div class="tool-card">
                         <div class="tool-icon">🔀</div>
                         <h4>Git & GitHub</h4>
                         <p><strong>Verzija:</strong> Git 2.40+</p>
                         <p><strong>Opis:</strong> Sustav za verzioniranje koda i suradnja.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Commit & Push/Pull</li>
                                 <li>Branch management</li>
-                                <li>Pull Requests</li>
                                 <li>GitHub Pages</li>
                             </ul>
                         </div>
                         <a href="https://github.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Docker -->
                     <div class="tool-card">
                         <div class="tool-icon">🐋</div>
                         <h4>Docker</h4>
                         <p><strong>Verzija:</strong> 24.x</p>
                         <p><strong>Opis:</strong> Kontejnerizacija za brzu deploymentaciju.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Docker Images</li>
                                 <li>Kontejneri</li>
                                 <li>Docker Compose</li>
-                                <li>Registry</li>
                             </ul>
                         </div>
                         <a href="https://www.docker.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- VS Code -->
                     <div class="tool-card">
                         <div class="tool-icon">💻</div>
                         <h4>Visual Studio Code</h4>
                         <p><strong>Verzija:</strong> 1.85+</p>
                         <p><strong>Opis:</strong> Najpopularniji editor za web razvoj.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>IntelliSense</li>
                                 <li>Debugger</li>
                                 <li>Extensions</li>
-                                <li>Integracija s Git-om</li>
                             </ul>
                         </div>
                         <a href="https://code.visualstudio.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- npm & Yarn -->
                     <div class="tool-card">
                         <div class="tool-icon">📦</div>
                         <h4>npm & Yarn</h4>
                         <p><strong>Verzija:</strong> npm 10.x, Yarn 4.x</p>
                         <p><strong>Opis:</strong> Package managers za JavaScript dependencije.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Instalacija paketa</li>
                                 <li>Versioniranje</li>
                                 <li>Script runner</li>
-                                <li>Dependency management</li>
                             </ul>
                         </div>
                         <a href="https://www.npmjs.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Webpack -->
                     <div class="tool-card">
                         <div class="tool-icon">📦</div>
                         <h4>Webpack / Vite</h4>
                         <p><strong>Verzija:</strong> Webpack 5.x, Vite 5.x</p>
                         <p><strong>Opis:</strong> Bundleri i build alati za optimizaciju.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>Code splitting</li>
                                 <li>Asset minification</li>
                                 <li>Hot module reload</li>
-                                <li>Tree shaking</li>
                             </ul>
                         </div>
                         <a href="https://webpack.js.org/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Postman -->
                     <div class="tool-card">
                         <div class="tool-icon">📮</div>
                         <h4>Postman</h4>
                         <p><strong>Verzija:</strong> 11.x</p>
                         <p><strong>Opis:</strong> Alat za testiranje REST API-ja.</p>
                         <div class="tool-features">
-                            <strong>Ključne mogućnosti:</strong>
                             <ul>
                                 <li>API zahtjevi</li>
                                 <li>Automatizirana testiranja</li>
                                 <li>Dokumentacija</li>
-                                <li>Kolaboracija</li>
                             </ul>
                         </div>
                         <a href="https://www.postman.com/" target="_blank" class="btn-link">Saznaj više →</a>
@@ -420,114 +377,95 @@
                 </div>
             </div>
 
-            <!-- KATEGORIJA 4: Učenje & Resursi -->
+            <!-- EDUKACIJA -->
             <div class="tools-category">
                 <h3>📚 Edukativni resursi i platforme</h3>
-                
                 <div class="tools-grid">
-                    <!-- MDN Web Docs -->
                     <div class="tool-card">
                         <div class="tool-icon">📖</div>
                         <h4>MDN Web Docs</h4>
                         <p><strong>Izdavač:</strong> Mozilla Foundation</p>
                         <p><strong>Opis:</strong> Osnovna dokumentacija za web tehnologije.</p>
                         <div class="tool-features">
-                            <strong>Sadržaj:</strong>
                             <ul>
                                 <li>HTML, CSS, JavaScript</li>
                                 <li>Web API-ji</li>
-                                <li>Primjeri koda</li>
                                 <li>Best practices</li>
                             </ul>
                         </div>
                         <a href="https://developer.mozilla.org/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Codecademy -->
                     <div class="tool-card">
                         <div class="tool-icon">🎓</div>
                         <h4>Codecademy</h4>
                         <p><strong>Tip:</strong> Interaktivna platforma</p>
                         <p><strong>Opis:</strong> Online tečajevi za programiranje.</p>
                         <div class="tool-features">
-                            <strong>Prednosti:</strong>
                             <ul>
                                 <li>Hands-on vježbe</li>
                                 <li>Instant povratne informacije</li>
                                 <li>Certificate</li>
-                                <li>Projekti</li>
                             </ul>
                         </div>
                         <a href="https://www.codecademy.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- FreeCodeCamp -->
                     <div class="tool-card">
                         <div class="tool-icon">💜</div>
                         <h4>FreeCodeCamp</h4>
                         <p><strong>Tip:</strong> Besplatna platforma</p>
                         <p><strong>Opis:</strong> Besplatni tečajevi i videozapisi za web razvoj.</p>
                         <div class="tool-features">
-                            <strong>Sadržaj:</strong>
                             <ul>
                                 <li>Video tečajevi</li>
                                 <li>Certifikati</li>
                                 <li>Projekti</li>
-                                <li>Zajednica</li>
                             </ul>
                         </div>
                         <a href="https://www.freecodecamp.org/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- Stack Overflow -->
                     <div class="tool-card">
                         <div class="tool-icon">🔍</div>
                         <h4>Stack Overflow</h4>
                         <p><strong>Tip:</strong> Q&A platforma</p>
                         <p><strong>Opis:</strong> Najveća zajednica za rješavanje problema.</p>
                         <div class="tool-features">
-                            <strong>Mogućnosti:</strong>
                             <ul>
                                 <li>Pitanja i odgovori</li>
                                 <li>Tagging sustav</li>
                                 <li>Reputacija</li>
-                                <li>Zajednica</li>
                             </ul>
                         </div>
                         <a href="https://stackoverflow.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- W3Schools -->
                     <div class="tool-card">
                         <div class="tool-icon">🌐</div>
                         <h4>W3Schools</h4>
                         <p><strong>Tip:</strong> Tutorial stranica</p>
                         <p><strong>Opis:</strong> Jednostavni tutoriali za web tehnologije.</p>
                         <div class="tool-features">
-                            <strong>Sadržaj:</strong>
                             <ul>
                                 <li>HTML, CSS, JS tutoriali</li>
                                 <li>"Try it Yourself" editor</li>
                                 <li>Reference</li>
-                                <li>Quiz testovi</li>
                             </ul>
                         </div>
                         <a href="https://www.w3schools.com/" target="_blank" class="btn-link">Saznaj više →</a>
                     </div>
 
-                    <!-- GitHub Learning -->
                     <div class="tool-card">
                         <div class="tool-icon">🚀</div>
                         <h4>GitHub Learning Lab</h4>
                         <p><strong>Tip:</strong> Praktični tečajevi</p>
                         <p><strong>Opis:</strong> Tečajevi za Git i GitHub s projektima.</p>
                         <div class="tool-features">
-                            <strong>Što učiš:</strong>
                             <ul>
                                 <li>Git & GitHub osnove</li>
                                 <li>Kolaboracija</li>
                                 <li>CI/CD</li>
-                                <li>Best practices</li>
                             </ul>
                         </div>
                         <a href="https://github.com/skills" target="_blank" class="btn-link">Saznaj više →</a>
