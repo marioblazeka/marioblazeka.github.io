@@ -608,7 +608,892 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
+<!-- Dodaj prije </body> -->
 
+<!-- ACCESSIBILITY WIDGET - 29 mogućnosti pristupačnosti -->
+<script>
+  // AccessWidget.js - Besplatni widget za pristupačnost
+  (function() {
+    // Kreiraj widget HTML
+    const accessibilityHTML = `
+      <div id="accessibility-widget" class="accessibility-widget">
+        <!-- Gumb za otvaranje/zatvaranje -->
+        <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Pristupačnost - Otvori postavke" title="Pristupačnost">
+          ♿
+        </button>
+
+        <!-- Panel sa opcijama -->
+        <div id="accessibility-panel" class="accessibility-panel" style="display: none;">
+          <div class="accessibility-header">
+            <h2>Postavke pristupačnosti</h2>
+            <button id="accessibility-close" class="accessibility-close" aria-label="Zatvori">✕</button>
+          </div>
+
+          <div class="accessibility-content">
+            
+            <!-- TEKST I FONT -->
+            <div class="accessibility-section">
+              <h3>📝 Tekst i font</h3>
+              
+              <div class="accessibility-item">
+                <label for="font-size">Veličina teksta:</label>
+                <div class="slider-container">
+                  <button class="size-btn" id="size-decrease" title="Manji tekst">−</button>
+                  <input type="range" id="font-size" min="80" max="150" value="100" class="accessibility-slider">
+                  <span id="font-size-display">100%</span>
+                  <button class="size-btn" id="size-reset" title="Resetuj">↻</button>
+                </div>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="letter-spacing" class="accessibility-checkbox">
+                  Povećaj razmak između znakova
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="line-height" class="accessibility-checkbox">
+                  Povećaj razmak između redaka
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label for="font-type">Tip fonta:</label>
+                <select id="font-type" class="accessibility-select">
+                  <option value="default">Standardni font</option>
+                  <option value="dyslexia">Dysleksija-prihvatljiv (OpenDyslexic)</option>
+                  <option value="monospace">Monospace</option>
+                  <option value="sans-serif">Sans-Serif</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- KONTRAST I BOJE -->
+            <div class="accessibility-section">
+              <h3>🎨 Kontrast i boje</h3>
+              
+              <div class="accessibility-item">
+                <label for="contrast">Kontrast:</label>
+                <div class="slider-container">
+                  <button class="contrast-btn" id="contrast-decrease">−</button>
+                  <input type="range" id="contrast" min="100" max="200" value="100" class="accessibility-slider">
+                  <span id="contrast-display">100%</span>
+                  <button class="contrast-btn" id="contrast-reset">↻</button>
+                </div>
+              </div>
+
+              <div class="accessibility-item">
+                <label>Teme:</label>
+                <div class="theme-buttons">
+                  <button class="theme-btn" data-theme="light" title="Svijetla tema">☀️ Svijetla</button>
+                  <button class="theme-btn" data-theme="dark" title="Tamna tema">🌙 Tamna</button>
+                  <button class="theme-btn" data-theme="blue" title="Plava tema">🔵 Plava</button>
+                  <button class="theme-btn" data-theme="yellow" title="Žuta tema">🟡 Žuta</button>
+                </div>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="desaturate" class="accessibility-checkbox">
+                  Uklanja saturaciju (Crno-bijeli način)
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="underline-links" class="accessibility-checkbox">
+                  Podcrta sve linkove
+                </label>
+              </div>
+            </div>
+
+            <!-- ČITANJE I SLUH -->
+            <div class="accessibility-section">
+              <h3>🔊 Čitanje i sluh</h3>
+              
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="text-to-speech" class="accessibility-checkbox">
+                  Pretvaranje teksta u govor
+                </label>
+                <small>Selektiraj tekst i čuaj ga čitanog naglas</small>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="highlight-headings" class="accessibility-checkbox">
+                  Istakni naslove
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="highlight-links" class="accessibility-checkbox">
+                  Istakni sve linkove
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label for="reading-guide">Vođica za čitanje:</label>
+                <select id="reading-guide" class="accessibility-select">
+                  <option value="none">Nema</option>
+                  <option value="line">Linija ispod teksta</option>
+                  <option value="focus">Fokus na redak</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- NAVIGACIJA -->
+            <div class="accessibility-section">
+              <h3>⌨️ Navigacija i kontrola</h3>
+              
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="keyboard-nav" class="accessibility-checkbox">
+                  Ojačana tipkovnička navigacija
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="skip-links" class="accessibility-checkbox">
+                  Prikaži "Preskoči" linkove
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label for="animation-speed">Brzina animacija:</label>
+                <select id="animation-speed" class="accessibility-select">
+                  <option value="normal">Normalna</option>
+                  <option value="slow">Spora</option>
+                  <option value="none">Bez animacija</option>
+                </select>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="focus-indicator" class="accessibility-checkbox">
+                  Ojačan fokus indikator
+                </label>
+              </div>
+            </div>
+
+            <!-- KURSOR I TOČKICE -->
+            <div class="accessibility-section">
+              <h3>🖱️ Kursor i pointer</h3>
+              
+              <div class="accessibility-item">
+                <label for="cursor-style">Stil kursora:</label>
+                <select id="cursor-style" class="accessibility-select">
+                  <option value="default">Standardni</option>
+                  <option value="large">Veliki</option>
+                  <option value="crosshair">Staklena lupa</option>
+                  <option value="target">Cilj</option>
+                </select>
+              </div>
+
+              <div class="accessibility-item">
+                <label for="cursor-color">Boja kursora:</label>
+                <input type="color" id="cursor-color" value="#FF0000" class="accessibility-color">
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="mouse-tracking" class="accessibility-checkbox">
+                  Pratenje miša (prikaži elemente ispod kursora)
+                </label>
+              </div>
+            </div>
+
+            <!-- FOKUS I VIZUALNI VODAČI -->
+            <div class="accessibility-section">
+              <h3>👁️ Fokus i vizualni vodači</h3>
+              
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="visual-focus" class="accessibility-checkbox">
+                  Istakni fokusirane elemente
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="button-outlines" class="accessibility-checkbox">
+                  Prikaži okvire oko dugmadi
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label for="focus-color">Boja fokusa:</label>
+                <input type="color" id="focus-color" value="#00FF99" class="accessibility-color">
+              </div>
+            </div>
+
+            <!-- DIZAJN -->
+            <div class="accessibility-section">
+              <h3>🎯 Smanjena animacija i efekti</h3>
+              
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="reduce-motion" class="accessibility-checkbox">
+                  Smanjena kretanja (za osjetljive korisnike)
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="remove-shadows" class="accessibility-checkbox">
+                  Uklanja sjene
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="simple-mode" class="accessibility-checkbox">
+                  Jednostavni modus (minimalne boje)
+                </label>
+              </div>
+            </div>
+
+            <!-- DODATNO -->
+            <div class="accessibility-section">
+              <h3>⚙️ Dodatno</h3>
+              
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="dyslexia-mode" class="accessibility-checkbox">
+                  Modus za disleksiju
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="adhd-friendly" class="accessibility-checkbox">
+                  Modus za ADHD (fokus na sadržaj)
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="seizure-safe" class="accessibility-checkbox">
+                  Sigurno za epilepsiju (bez stroboskopa)
+                </label>
+              </div>
+
+              <div class="accessibility-item">
+                <label>
+                  <input type="checkbox" id="high-saturation" class="accessibility-checkbox">
+                  Pojačana saturacija boja
+                </label>
+              </div>
+            </div>
+
+            <!-- AKCIJE -->
+            <div class="accessibility-actions">
+              <button id="reset-all" class="btn-reset">🔄 Resetuj sve postavke</button>
+              <button id="save-settings" class="btn-save">💾 Spremi postavke</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Kreiraj CSS za widget
+    const accessibilityCSS = `
+      /* ACCESSIBILITY WIDGET STILOVI */
+      .accessibility-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        font-family: Arial, sans-serif;
+      }
+
+      .accessibility-toggle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+        color: #000;
+        border: 2px solid #000;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .accessibility-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 255, 153, 0.6);
+      }
+
+      .accessibility-toggle:focus {
+        outline: 3px solid #000;
+      }
+
+      .accessibility-panel {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        width: 450px;
+        max-height: 80vh;
+        background: #fff;
+        border: 2px solid #00ff99;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        overflow-y: auto;
+        z-index: 10001;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .accessibility-header {
+        background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+        color: #000;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #000;
+      }
+
+      .accessibility-header h2 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .accessibility-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #000;
+        font-weight: 700;
+      }
+
+      .accessibility-close:hover {
+        transform: rotate(90deg);
+        transition: transform 0.2s;
+      }
+
+      .accessibility-content {
+        padding: 1.5rem;
+        max-height: calc(80vh - 70px);
+        overflow-y: auto;
+      }
+
+      .accessibility-section {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .accessibility-section:last-of-type {
+        border-bottom: none;
+      }
+
+      .accessibility-section h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.1rem;
+        color: #222;
+        font-weight: 700;
+      }
+
+      .accessibility-item {
+        margin-bottom: 1.2rem;
+      }
+
+      .accessibility-item label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+        font-size: 0.95rem;
+      }
+
+      .accessibility-item small {
+        display: block;
+        color: #666;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+      }
+
+      .accessibility-checkbox {
+        margin-right: 0.8rem;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      .accessibility-slider {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: #ddd;
+        outline: none;
+        margin: 0.5rem 0;
+      }
+
+      .accessibility-slider:focus {
+        box-shadow: 0 0 8px rgba(0, 255, 153, 0.5);
+      }
+
+      .slider-container {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .size-btn, .contrast-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+
+      .size-btn:hover, .contrast-btn:hover {
+        background: #00ff99;
+        color: #000;
+      }
+
+      #font-size-display, #contrast-display {
+        min-width: 35px;
+        text-align: center;
+        font-weight: 600;
+        color: #00ff99;
+      }
+
+      .accessibility-select {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+
+      .accessibility-select:focus {
+        outline: 2px solid #00ff99;
+      }
+
+      .accessibility-color {
+        width: 50px;
+        height: 40px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .theme-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+
+      .theme-btn {
+        padding: 0.8rem;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background: #f9f9f9;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+
+      .theme-btn:hover, .theme-btn.active {
+        background: #00ff99;
+        border-color: #00ff99;
+        color: #000;
+      }
+
+      .accessibility-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid #eee;
+      }
+
+      .btn-reset, .btn-save {
+        flex: 1;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+      }
+
+      .btn-reset {
+        background: #ff6b6b;
+        color: #fff;
+      }
+
+      .btn-reset:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+      }
+
+      .btn-save {
+        background: #00ff99;
+        color: #000;
+      }
+
+      .btn-save:hover {
+        background: #00ffcc;
+        transform: translateY(-2px);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 600px) {
+        .accessibility-panel {
+          width: 95vw;
+          bottom: 100px;
+          right: 2.5vw;
+          left: auto;
+        }
+
+        .theme-buttons {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* PRIMJENA POSTAVKI */
+      body.font-size-increased {
+        font-size: 1.25em;
+      }
+
+      body.letter-spacing-increased {
+        letter-spacing: 0.15em;
+      }
+
+      body.line-height-increased {
+        line-height: 1.8;
+      }
+
+      body.dyslexia-font {
+        font-family: 'OpenDyslexic', Arial, sans-serif;
+      }
+
+      body.high-contrast {
+        filter: contrast(1.5);
+      }
+
+      body.desaturated {
+        filter: saturate(0);
+      }
+
+      body.dark-theme {
+        background: #1a1a1a !important;
+        color: #fff !important;
+      }
+
+      body.blue-theme {
+        background: #e3f2fd !important;
+        color: #0d47a1 !important;
+      }
+
+      body.yellow-theme {
+        background: #fffde7 !important;
+        color: #f57f17 !important;
+      }
+
+      body.reduced-motion * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      body.remove-shadows * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+
+      body.underline-links a {
+        text-decoration: underline !important;
+      }
+
+      body.simple-mode {
+        background: #fff !important;
+        color: #000 !important;
+      }
+
+      body.simple-mode * {
+        background: transparent !important;
+        border-color: #ccc !important;
+      }
+
+      /* CUSTOM KURSOR */
+      body.custom-cursor {
+        cursor: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="red" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="red"/></svg>') 16 16, auto;
+      }
+
+      /* FOKUS INDIKATOR */
+      body.enhanced-focus :focus {
+        outline: 3px solid #ff0000 !important;
+        outline-offset: 2px !important;
+      }
+
+      body.button-outlines button,
+      body.button-outlines a {
+        border: 2px solid #000 !important;
+      }
+    `;
+
+    // Kreiraj CSS dinamički
+    const styleElement = document.createElement('style');
+    styleElement.textContent = accessibilityCSS;
+    document.head.appendChild(styleElement);
+
+    // Kreiraj HTML dinamički
+    document.addEventListener('DOMContentLoaded', function() {
+      const widgetContainer = document.createElement('div');
+      widgetContainer.innerHTML = accessibilityHTML;
+      document.body.appendChild(widgetContainer);
+
+      // INICIJALIZACIJA WIDGETA
+      initializeAccessibilityWidget();
+    });
+
+    // Funkcija za inicijalizaciju
+    function initializeAccessibilityWidget() {
+      const toggle = document.getElementById('accessibility-toggle');
+      const panel = document.getElementById('accessibility-panel');
+      const closeBtn = document.getElementById('accessibility-close');
+      const resetBtn = document.getElementById('reset-all');
+      const saveBtn = document.getElementById('save-settings');
+
+      // Otvori/zatvori panel
+      toggle.addEventListener('click', function() {
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      });
+
+      closeBtn.addEventListener('click', function() {
+        panel.style.display = 'none';
+      });
+
+      // Veličina teksta
+      const fontSizeInput = document.getElementById('font-size');
+      const fontSizeDisplay = document.getElementById('font-size-display');
+      
+      fontSizeInput.addEventListener('input', function() {
+        const value = this.value;
+        fontSizeDisplay.textContent = value + '%';
+        document.documentElement.style.fontSize = (value / 100) * 16 + 'px';
+        localStorage.setItem('accessibilityFontSize', value);
+      });
+
+      document.getElementById('size-decrease').addEventListener('click', function() {
+        fontSizeInput.value = Math.max(80, parseInt(fontSizeInput.value) - 10);
+        fontSizeInput.dispatchEvent(new Event('input'));
+      });
+
+      document.getElementById('size-reset').addEventListener('click', function() {
+        fontSizeInput.value = 100;
+        fontSizeInput.dispatchEvent(new Event('input'));
+      });
+
+      // Kontrast
+      const contrastInput = document.getElementById('contrast');
+      const contrastDisplay = document.getElementById('contrast-display');
+      
+      contrastInput.addEventListener('input', function() {
+        const value = this.value;
+        contrastDisplay.textContent = value + '%';
+        document.body.style.filter = `contrast(${value / 100})`;
+        localStorage.setItem('accessibilityContrast', value);
+      });
+
+      document.getElementById('contrast-decrease').addEventListener('click', function() {
+        contrastInput.value = Math.max(100, parseInt(contrastInput.value) - 10);
+        contrastInput.dispatchEvent(new Event('input'));
+      });
+
+      document.getElementById('contrast-reset').addEventListener('click', function() {
+        contrastInput.value = 100;
+        contrastInput.dispatchEvent(new Event('input'));
+      });
+
+      // Teme
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const theme = this.dataset.theme;
+          document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          document.body.classList.remove('dark-theme', 'blue-theme', 'yellow-theme');
+          if (theme !== 'light') {
+            document.body.classList.add(theme + '-theme');
+          }
+          localStorage.setItem('accessibilityTheme', theme);
+        });
+      });
+
+      // Ostale checkboxe
+      const checkboxes = {
+        'letter-spacing': 'letter-spacing-increased',
+        'line-height': 'line-height-increased',
+        'desaturate': 'desaturated',
+        'underline-links': 'underline-links',
+        'text-to-speech': 'text-to-speech',
+        'highlight-headings': 'highlight-headings',
+        'highlight-links': 'highlight-links',
+        'keyboard-nav': 'keyboard-nav',
+        'skip-links': 'skip-links',
+        'focus-indicator': 'focus-indicator',
+        'mouse-tracking': 'mouse-tracking',
+        'visual-focus': 'visual-focus',
+        'button-outlines': 'button-outlines',
+        'reduce-motion': 'reduced-motion',
+        'remove-shadows': 'remove-shadows',
+        'simple-mode': 'simple-mode',
+        'dyslexia-mode': 'dyslexia-font',
+        'adhd-friendly': 'adhd-friendly',
+        'seizure-safe': 'seizure-safe',
+        'high-saturation': 'high-saturation'
+      };
+
+      Object.entries(checkboxes).forEach(([id, className]) => {
+        const checkbox = document.getElementById(id);
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            document.body.classList.add(className);
+          } else {
+            document.body.classList.remove(className);
+          }
+          localStorage.setItem(`accessibility${id}`, this.checked);
+        });
+      });
+
+      // Font tip
+      document.getElementById('font-type').addEventListener('change', function() {
+        if (this.value === 'dyslexia') {
+          document.body.style.fontFamily = "'OpenDyslexic', Arial, sans-serif";
+        } else {
+          document.body.style.fontFamily = this.value === 'default' ? 'inherit' : this.value;
+        }
+        localStorage.setItem('accessibilityFontType', this.value);
+      });
+
+      // Kursor
+      document.getElementById('cursor-style').addEventListener('change', function() {
+        const styles = {
+          'default': 'auto',
+          'large': 'url("data:image/svg+xml;charset=utf-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22><circle cx=%2224%22 cy=%2224%22 r=%2220%22 fill=%22none%22 stroke=%22red%22 stroke-width=%223%22/><circle cx=%2224%22 cy=%2224%22 r=%223%22 fill=%22red%22/></svg>") 24 24, auto',
+          'crosshair': 'crosshair',
+          'target': 'url("data:image/svg+xml;charset=utf-8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2432%22 height=%2432%22><circle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22none%22 stroke=%22red%22 stroke-width=%222%22/><circle cx=%2216%22 cy=%2216%22 r=%228%22 fill=%22none%22 stroke=%22red%22 stroke-width=%221%22/><circle cx=%2216%22 cy=%2216%22 r=%222%22 fill=%22red%22/></svg>") 16 16, auto'
+        };
+        document.body.style.cursor = styles[this.value];
+        localStorage.setItem('accessibilityCursorStyle', this.value);
+      });
+
+      // Boja kursora
+      document.getElementById('cursor-color').addEventListener('change', function() {
+        document.body.style.setProperty('--cursor-color', this.value);
+      });
+
+      // Text-to-speech
+      document.getElementById('text-to-speech').addEventListener('change', function() {
+        if (this.checked) {
+          enableTextToSpeech();
+        } else {
+          disableTextToSpeech();
+        }
+      });
+
+      // Resetuj sve
+      resetBtn.addEventListener('click', function() {
+        if (confirm('Resetuj sve postavke na zadane vrijednosti?')) {
+          localStorage.clear();
+          location.reload();
+        }
+      });
+
+      // Spremi postavke
+      saveBtn.addEventListener('click', function() {
+        alert('✅ Postavke su spremljene! Bit će obnovljene pri sljedećoj posjeti.');
+      });
+
+      // Učitaj spreljene postavke
+      loadAccessibilitySettings();
+    }
+
+    // Učitaj spreljene postavke
+    function loadAccessibilitySettings() {
+      const fontSize = localStorage.getItem('accessibilityFontSize');
+      if (fontSize) {
+        const input = document.getElementById('font-size');
+        input.value = fontSize;
+        input.dispatchEvent(new Event('input'));
+      }
+
+      const contrast = localStorage.getItem('accessibilityContrast');
+      if (contrast) {
+        const input = document.getElementById('contrast');
+        input.value = contrast;
+        input.dispatchEvent(new Event('input'));
+      }
+
+      const theme = localStorage.getItem('accessibilityTheme');
+      if (theme) {
+        const btn = document.querySelector(`[data-theme="${theme}"]`);
+        if (btn) btn.click();
+      }
+
+      // Učitaj sve checkboxe
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('accessibilityCheckbox') || key.includes('accessibility')) {
+          const id = key.replace('accessibility', '').toLowerCase();
+          const checkbox = document.getElementById(id);
+          if (checkbox && localStorage.getItem(key) === 'true') {
+            checkbox.checked = true;
+            checkbox.dispatchEvent(new Event('change'));
+          }
+        }
+      });
+    }
+
+    // Text-to-Speech funkcionalnost
+    function enableTextToSpeech() {
+      document.addEventListener('mouseup', function() {
+        const selectedText = window.getSelection().toString();
+        if (selectedText) {
+          const utterance = new SpeechSynthesisUtterance(selectedText);
+          utterance.lang = 'hr-HR';
+          speechSynthesis.speak(utterance);
+        }
+      });
+    }
+
+    function disableTextToSpeech() {
+      speechSynthesis.cancel();
+    }
+  })();
+</script>
+
+<!-- Ostatak stranice -->
 </body>
 </html>ss="back-to-top" aria-label="Vrati se na vrh stranice">↑</button>
 
