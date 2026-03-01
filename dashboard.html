@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privatni dashboard za ulogirane korisnike">
+    <title>Dashboard – Privatni prostor</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Skip to content -->
+    <a id="pojo-a11y-skip-content" class="pojo-skip-link" tabindex="1" accesskey="s" href="#main-content" role="link">Preskoči na sadržaj</a>
+
+    <!-- NAVIGACIJSKA TRAKA -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="navbar-title">🏠 Privatni prostor</h1>
+            <div class="navbar-right">
+                <span id="welcome-name" class="welcome-text">Učitavanje...</span>
+                <button id="logout-btn" class="btn-logout">Odjava</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="main-content main-dashboard">
+        
+        <!-- POZDRAVNA PORUKA -->
+        <section class="section welcome-section">
+            <div class="welcome-card">
+                <h2>👋 Dobrodošli, <span id="username-display">-</span>!</h2>
+                <p class="welcome-message">Uspješno ste se ulogirani na privatni dio web stranice.</p>
+                <div class="success-badge">
+                    ✅ Prijava je uspješna
+                </div>
+            </div>
+        </section>
+
+        <!-- INFORMACIJE O KORISNIKU -->
+        <section class="section user-info-section">
+            <h3>📋 Vaši podaci:</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Korisničko ime:</strong>
+                    <span id="display-username">-</span>
+                </div>
+                <div class="info-item">
+                    <strong>Vrijeme logiranja:</strong>
+                    <span id="display-time">-</span>
+                </div>
+                <div class="info-item">
+                    <strong>Status:</strong>
+                    <span class="status-active">🟢 Aktivno</span>
+                </div>
+                <div class="info-item">
+                    <strong>Pristupna razina:</strong>
+                    <span class="access-level">Registrirani korisnik</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVATNI SADRŽAJ -->
+        <section class="section private-content-section">
+            <h3>🔒 Privatni sadržaj</h3>
+            <div class="private-content">
+                <p>
+                    Ovaj sadržaj je dostupan <strong>samo registriranim korisnicima</strong> koji su se uspješno ulogirani.
+                </p>
+                <div class="feature-list">
+                    <h4>Dostupne mogućnosti:</h4>
+                    <ul>
+                        <li>✓ Pristup privatnim informacijama</li>
+                        <li>✓ Mogućnost pregleda personaliziranih sadržaja</li>
+                        <li>✓ Sigurna komunikacija kroz šifriranu konekciju (HTTPS)</li>
+                        <li>✓ Zaštita podataka kroz session management</li>
+                        <li>✓ Mogućnost "Zapamti me" za bržu sljedeću prijavu</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIGURNOSNE INFORMACIJE -->
+        <section class="section security-section">
+            <h3>🔐 Sigurnosne informacije</h3>
+            <div class="security-info">
+                <p>
+                    <strong>Važno:</strong> Nikada ne dijelite svoju lozinku s nikime. 
+                    Ako koristite javno računalo, obavezno se odjavite prije nego što napustite stranicu.
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Session vrijeme:</strong> Vaša prijava će istjeći nakon 30 minuta neaktivnosti 
+                    iz sigurnosnih razloga.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Back to top -->
+    <button id="backToTop" class="back-to-top" aria-label="Vrati se na vrh stranice">↑</button>
+
+    <footer class="footer">
+        <p><small>&copy; 2026. Privatni prostor. Sva prava zadržana.</small></p>
+    </footer>
+
+    <!-- JAVASCRIPT - Učitavanje korisničkih podataka i odjava -->
+    <script>
+        // Provjera je li korisnik logiran
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('logged_in');
+            const userData = localStorage.getItem('user_data');
+
+            if (!isLoggedIn || !userData) {
+                // Nema logiranja - preusmjeri na login
+                window.location.href = 'login.html';
+                return;
+            }
+
+            return JSON.parse(userData);
+        }
+
+        // Učitaj korisničke podatke
+        function loadUserData() {
+            const user = checkAuth();
+            
+            if (user) {
+                const displayName = user.username.split('@')[0]; // Ako je email, prikaži samo dio prije @
+                
+                document.getElementById('welcome-name').textContent = displayName;
+                document.getElementById('username-display').textContent = displayName;
+                document.getElementById('display-username').textContent = user.username;
+                document.getElementById('display-time').textContent = user.login_time;
+            }
+        }
+
+        // Odjava
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            if (confirm('Jeste li sigurni da se želite odjaviti?')) {
+                // Obriši podatke
+                localStorage.removeItem('logged_in');
+                localStorage.removeItem('user_data');
+                localStorage.removeItem('remember_token');
+                sessionStorage.removeItem('first_attempt');
+                
+                // Poruka
+                alert('Uspješno ste se odjavili!');
+                
+                // Redirekcija
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Back to top
+        var backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Učitaj podatke pri učitavanju stranice
+        document.addEventListener('DOMContentLoaded', loadUserData);
+
+        // Provjera authentifikacije nakon 1 sekunde
+        setTimeout(checkAuth, 1000);
+    </script>
+
+</body>
+</html>
