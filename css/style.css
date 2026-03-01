@@ -1,1 +1,459 @@
+/* ============================================
+   OSNOVNI RESET & ZAJEDNIČKI STILOVI
+   ============================================ */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.65;
+    color: #222;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SKIP TO CONTENT - PRISTUPAČNOST
+   ============================================ */
+
+.pojo-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+}
+
+.pojo-skip-link:focus {
+    left: 0;
+    outline: 3px solid #00ff99;
+    box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+}
+
+/* ============================================
+   KOLAČIĆI BANNER
+   ============================================ */
+
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #232323 0%, #1a1a1a 100%);
+    color: #fff;
+    z-index: 9999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cookie-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.cookie-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.cookie-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.55;
+}
+
+.cookie-more {
+    color: #00ff99;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 0.3rem;
+}
+
+.cookie-more:hover, .cookie-more:focus {
+    color: #00ffcc;
+    outline: 2px solid #00ff99;
+    border-radius: 2px;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.cookie-btn {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-width: 120px;
+}
+
+.accept-btn {
+    background-color: #00ff99;
+    color: #000;
+}
+
+.accept-btn:hover, .accept-btn:focus {
+    background-color: #00ffcc;
+    outline: 2px solid #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+}
+
+.reject-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.reject-btn:hover, .reject-btn:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 2px solid #00ff99;
+}
+
+/* ============================================
+   GLAVNI SADRŽAJ
+   ============================================ */
+
+.main-content {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+    color: #000;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.section {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    color: #000;
+    border-bottom: 3px solid #00ff99;
+    padding-bottom: 0.8rem;
+}
+
+.section h3 {
+    font-size: 1.25rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: #222;
+}
+
+.section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.pour-list, .section ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.pour-list li, .section ul li {
+    margin-bottom: 0.9rem;
+    line-height: 1.7;
+}
+
+.section a {
+    color: #0088ff;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.section a:hover, .section a:focus {
+    color: #00ff99;
+    outline: 1px solid #0088ff;
+    border-radius: 2px;
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
+
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    background-color: #00ff99;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover, .back-to-top:focus {
+    background-color: #00ffcc;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
+    outline: 2px solid #000;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    max-width: 960px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE DIZAJN - TABLET
+   ============================================ */
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1.8rem 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 1.4rem;
+    }
+
+    .section h3 {
+        font-size: 1.1rem;
+    }
+
+    .cookie-container {
+        padding: 1.2rem;
+    }
+
+    .cookie-title {
+        font-size: 1.05rem;
+    }
+
+    .cookie-desc {
+        font-size: 0.9rem;
+    }
+
+    .cookie-buttons {
+        gap: 0.6rem;
+    }
+
+    .cookie-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DIZAJN - MOBITEL
+   ============================================ */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        padding-bottom: 3rem;
+    }
+
+    .main-content {
+        margin: 1rem auto;
+        border-radius: 0;
+    }
+
+    .header {
+        padding: 1.5rem 1rem;
+        border-radius: 0;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    .section {
+        padding: 1.2rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .section h2 {
+        font-size: 1.2rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .section h3 {
+        font-size: 1rem;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .section p {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+
+    .pour-list, .section ul {
+        margin-left: 1.2rem;
+    }
+
+    .pour-list li, .section ul li {
+        margin-bottom: 0.7rem;
+        font-size: 0.95rem;
+    }
+
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .cookie-container {
+        padding: 1rem;
+    }
+
+    .cookie-title {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .cookie-desc {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .cookie-buttons {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .cookie-btn {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   PRISTUPAČNOST - FOKUS STILOVI
+   ============================================ */
+
+button:focus, a:focus {
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: #00ff99;
+    border-radius: 2px;
+}
+
+/* ============================================
+   KONTRAST I ČITLJIVOST
+   ============================================ */
+
+h1, h2, h3 {
+    color: #000;
+}
+
+strong {
+    font-weight: 600;
+    color: #000;
+}
