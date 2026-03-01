@@ -14,6 +14,49 @@
 </head>
 <body>
 
+    <!-- JAVASCRIPT ZA TRČEĆI TEKST U KARTICI -->
+    <script>
+        // Tekst koji se vrti u kartici
+        const scrollingText = "★ Mario Blažeka : Mario Blažeka osobna Web stranica, primjer sa raznim web alatima za edukaciju! Informativni sadržaj za kolegij Web aplikacije!!! ★ ";
+        let position = 0;
+
+        // Funkcija za ažuriranje naslova kartice
+        function updateTabTitle() {
+            // Pomakni poziciju
+            position = (position + 1) % scrollingText.length;
+            
+            // Prikaži dio teksta koji "trči"
+            const displayText = scrollingText.substring(position) + scrollingText.substring(0, position);
+            
+            // Postavi naslov kartice
+            document.title = displayText.substring(0, 60); // Prikaži samo prvih 60 znakova
+        }
+
+        // Pokreni animaciju svakih 200ms (bržina trčanja)
+        setInterval(updateTabTitle, 200);
+
+        // Vrati originalni naslov kad korisnik vrati fokus na tab
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // Tab je fokusiran - vrati originalni naslov
+                document.title = "Mario Blažeka – Osobna web stranica | Web aplikacije";
+                position = 0;
+            } else {
+                // Tab je u pozadini - nastavi sa trčećim tekstom
+            }
+        });
+
+        // Kad se tab zatvori/otakne
+        window.addEventListener('blur', function() {
+            document.title = "Mario Blažeka – Vrati se! 👈";
+        });
+
+        window.addEventListener('focus', function() {
+            document.title = "Mario Blažeka – Osobna web stranica | Web aplikacije";
+            position = 0;
+        });
+    </script>
+
     <!-- Skip to content -->
     <a id="pojo-a11y-skip-content" class="pojo-skip-link" tabindex="1" accesskey="s" href="#main-content" role="link">Preskoči na sadržaj</a>
 
@@ -521,6 +564,53 @@
 
     <!-- Back to top -->
     <button id="backToTop" class="back-to-top" aria-label="Vrati se na vrh stranice">↑</button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><small>&copy; 2026 Mario Blažeka. Osobna web stranica za kolegij Web aplikacije. Sva prava zadržana.</small></p>
+    </footer>
+
+    <!-- JAVASCRIPT ZA KOLAČIĆE I BACK-TO-TOP -->
+    <script>
+        // Kolačići banner
+        document.addEventListener("DOMContentLoaded", function () {
+            var banner = document.getElementById('cookie-banner');
+            var acceptBtn = document.getElementById('accept-cookies');
+            var rejectBtn = document.getElementById('reject-cookies');
+            
+            if (!localStorage.getItem('cookiesAccepted')) {
+                banner.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+            }
+            
+            acceptBtn.onclick = function(){
+                localStorage.setItem('cookiesAccepted', '1');
+                banner.style.display = 'none';
+            };
+            
+            rejectBtn.onclick = function(){
+                localStorage.setItem('cookiesAccepted', '0');
+                banner.style.display = 'none';
+            };
+        });
+
+        // Back to top
+        var backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>ss="back-to-top" aria-label="Vrati se na vrh stranice">↑</button>
 
     <!-- Footer -->
     <footer class="footer">
