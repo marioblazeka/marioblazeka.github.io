@@ -67,3 +67,20 @@ body {
     max-width: 1400px;
   }
 }
+/* Samo kad je mobitel/tablet okrenut vodoravno (Pejzaž) */
+@media screen and (orientation: landscape) {
+    body {
+        background-color: #f0f0f0; /* Primjer promjene pozadine */
+    }
+    .hero-slika {
+        height: 50vh; /* Smanjimo visinu slike da ne zauzme cijeli ekran */
+    }
+}
+
+/* Samo kad je uređaj uspravan (Portret) */
+@media screen and (orientation: portrait) {
+    .hero-slika {
+        height: 100vh;
+    }
+}
+
