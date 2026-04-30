@@ -1,0 +1,69 @@
+/* ==========================================
+   1. MOBITEL (Osnovni stilovi)
+   Ovo se primjenjuje na sve uređaje po defaultu.
+   Fokus je na jednostavnom rasporedu u jednom stupcu.
+   ========================================== */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.kontejner {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Elementi idu jedan ispod drugog */
+}
+
+/* ==========================================
+   2. TABLET (Ekran širi od 768px)
+   Ovdje se sadržaj može širiti u više stupaca.
+   ========================================== */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 17px;
+    padding: 20px;
+  }
+  
+  .kontejner {
+    flex-direction: row; /* Elementi idu jedan pored drugog */
+    flex-wrap: wrap;
+  }
+  
+  .stupac {
+    flex: 0 0 50%; /* Dva stupca na tabletu */
+  }
+}
+
+/* ==========================================
+   3. STOLNO RAČUNALO / LAPTOP (Ekran širi od 1024px)
+   Puni prikaz s maksimalnom širinom za ugodno čitanje.
+   ========================================== */
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .kontejner {
+    max-width: 1200px; /* Sprječava da se tekst previše raširi */
+    margin: 0 auto; /* Centrira stranicu na velikim ekranima */
+  }
+  
+  .stupac {
+    flex: 0 0 33.33%; /* Tri stupca na desktopu */
+  }
+}
+
+/* ==========================================
+   4. VELIKI EKRANI / PROJEKTOR (Ekran širi od 1440px)
+   Prilagodbe za prezentacije ili masivne monitore.
+   ========================================== */
+@media screen and (min-width: 1440px) {
+  body {
+    font-size: 20px; /* Povećavamo font radi bolje vidljivosti iz daljine */
+  }
+  
+  .kontejner {
+    max-width: 1400px;
+  }
+}
