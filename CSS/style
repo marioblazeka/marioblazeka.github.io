@@ -83,4 +83,51 @@ body {
         height: 100vh;
     }
 }
+/* Zajednički stilovi za plutajuće elemente */
+#back-to-top, #accessibility-widget {
+    position: fixed;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Back to Top - gornji gumb */
+#back-to-top {
+    bottom: 80px; /* Iznad gumba za pristupačnost */
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+}
+
+/* Pristupačnost - donji gumb */
+#accessibility-widget {
+    bottom: 20px;
+    background-color: #005596; /* Tipična plava za EU standarde */
+    color: white;
+    font-size: 22px;
+}
+
+/* Efekt na prijelaz mišem */
+#back-to-top:hover, #accessibility-widget:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* Prilagodba za mobitele - da ne smetaju previše */
+@media screen and (max-width: 480px) {
+    #back-to-top, #accessibility-widget {
+        width: 40px;
+        height: 40px;
+        right: 15px;
+    }
+}
 
