@@ -129,7 +129,7 @@
         <section id="web-alati" class="section web-tools-section" aria-labelledby="tools-title">
             <h2 id="tools-title">🛠️ Web alati za edukaciju</h2>
             <p class="intro-text">
-                Evo pregleda najvažnijih web alata koji se koriste u kolegiju <strong>Web aplikacije</strong>:
+                Evo pregleda najvažnijih web alata koji se koristi u kolegiju <strong>Web aplikacije</strong>:
             </p>
 
             <!-- FRONTEND -->
@@ -619,7 +619,6 @@
         <!-- JAVASCRIPT ZA STATISTIKU -->
         <script>
           (function() {
-            // Inicijalizacija statistike
             class VisitorStats {
               constructor() {
                 this.initStats();
@@ -628,7 +627,6 @@
               }
 
               initStats() {
-                // Učitaj postojeće podatke
                 const stats = JSON.parse(localStorage.getItem('visitorStats')) || {
                   totalVisitors: 0,
                   currentVisitors: 0,
@@ -642,12 +640,10 @@
                   timezone: this.getTimezone()
                 };
 
-                // Povećaj brojače
                 stats.totalVisitors++;
                 stats.pageLoads++;
                 stats.lastVisit = new Date().toLocaleString('hr-HR');
 
-                // Provjeri je li isti dan
                 const today = new Date().toDateString();
                 const lastDay = localStorage.getItem('lastVisitDay') || '';
                 
@@ -659,12 +655,10 @@
                   localStorage.setItem('lastVisitDay', today);
                 }
 
-                // Spremi statistiku
                 localStorage.setItem('visitorStats', JSON.stringify(stats));
                 localStorage.setItem('todayVisitors', stats.todayVisitors);
                 localStorage.setItem('sessionStartTime', stats.sessionStartTime);
 
-                // Simuliraj trenutne posjetitelje (random 1-15)
                 const currentOnline = Math.floor(Math.random() * 15) + 1;
                 localStorage.setItem('currentVisitors', currentOnline);
 
@@ -724,7 +718,6 @@
                   document.getElementById('visit-time').textContent = 
                     `${minutes}m ${seconds}s`;
 
-                  // Simuliraj promjenu trenutnih posjetitelja
                   if (Math.random() > 0.95) {
                     const current = Math.floor(Math.random() * 20) + 1;
                     localStorage.setItem('currentVisitors', current);
@@ -734,7 +727,6 @@
               }
             }
 
-            // Inicijaliziraj statistiku
             document.addEventListener('DOMContentLoaded', function() {
               new VisitorStats();
               initStatsWidget();
@@ -754,7 +746,6 @@
                 panel.style.display = 'none';
               });
 
-              // Zatvori panel klikom izvan
               document.addEventListener('click', function(event) {
                 if (!event.target.closest('.stats-widget')) {
                   panel.style.display = 'none';
@@ -776,7 +767,6 @@
 
     <!-- JAVASCRIPT ZA KOLAČIĆE I BACK-TO-TOP -->
     <script>
-        // Kolačići banner
         document.addEventListener("DOMContentLoaded", function () {
             var banner = document.getElementById('cookie-banner');
             var acceptBtn = document.getElementById('accept-cookies');
@@ -799,7 +789,6 @@
             };
         });
 
-        // Back to top
         var backToTop = document.getElementById("backToTop");
         window.addEventListener("scroll", function() {
             if (window.scrollY > 300) {
@@ -814,336 +803,7 @@
     </script>
 
     <!-- ACCESSIBILITY WIDGET - 29 mogućnosti pristupačnosti -->
-    <script>
-      // AccessWidget.js - Besplatni widget za pristupačnost
-      (function() {
-        // Kreiraj widget HTML
-        const accessibilityHTML = `
-          <div id="accessibility-widget" class="accessibility-widget">
-            <!-- Gumb za otvaranje/zatvaranje -->
-            <button id="accessibility-toggle" class="accessibility-toggle" aria-label="Pristupačnost - Otvori postavke" title="Pristupačnost">
-              ♿
-            </button>
-
-            <!-- Panel sa opcijama -->
-            <div id="accessibility-panel" class="accessibility-panel" style="display: none;">
-              <div class="accessibility-header">
-                <h2>Postavke pristupačnosti</h2>
-                <button id="accessibility-close" class="accessibility-close" aria-label="Zatvori">✕</button>
-              </div>
-
-              <div class="accessibility-content">
-                
-                <!-- TEKST I FONT -->
-                <div class="accessibility-section">
-                  <h3>📝 Tekst i font</h3>
-                  
-                  <div class="accessibility-item">
-                    <label for="font-size">Veličina teksta:</label>
-                    <div class="slider-container">
-                      <button class="size-btn" id="size-decrease" title="Manji tekst">−</button>
-                      <input type="range" id="font-size" min="80" max="150" value="100" class="accessibility-slider">
-                      <span id="font-size-display">100%</span>
-                      <button class="size-btn" id="size-reset" title="Resetuj">↻</button>
-                    </div>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="letter-spacing" class="accessibility-checkbox">
-                      Povećaj razmak između znakova
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="line-height" class="accessibility-checkbox">
-                      Povećaj razmak između redaka
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label for="font-type">Tip fonta:</label>
-                    <select id="font-type" class="accessibility-select">
-                      <option value="default">Standardni font</option>
-                      <option value="dyslexia">Dysleksija-prihvatljiv (OpenDyslexic)</option>
-                      <option value="monospace">Monospace</option>
-                      <option value="sans-serif">Sans-Serif</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- KONTRAST I BOJE -->
-                <div class="accessibility-section">
-                  <h3>🎨 Kontrast i boje</h3>
-                  
-                  <div class="accessibility-item">
-                    <label for="contrast">Kontrast:</label>
-                    <div class="slider-container">
-                      <button class="contrast-btn" id="contrast-decrease">−</button>
-                      <input type="range" id="contrast" min="100" max="200" value="100" class="accessibility-slider">
-                      <span id="contrast-display">100%</span>
-                      <button class="contrast-btn" id="contrast-reset">↻</button>
-                    </div>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>Teme:</label>
-                    <div class="theme-buttons">
-                      <button class="theme-btn" data-theme="light" title="Svijetla tema">☀️ Svijetla</button>
-                      <button class="theme-btn" data-theme="dark" title="Tamna tema">🌙 Tamna</button>
-                      <button class="theme-btn" data-theme="blue" title="Plava tema">🔵 Plava</button>
-                      <button class="theme-btn" data-theme="yellow" title="Žuta tema">🟡 Žuta</button>
-                    </div>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="desaturate" class="accessibility-checkbox">
-                      Uklanja saturaciju (Crno-bijeli način)
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="underline-links" class="accessibility-checkbox">
-                      Podcrta sve linkove
-                    </label>
-                  </div>
-                </div>
-
-                <!-- ČITANJE I SLUH -->
-                <div class="accessibility-section">
-                  <h3>🔊 Čitanje i sluh</h3>
-                  
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="text-to-speech" class="accessibility-checkbox">
-                      Pretvaranje teksta u govor
-                    </label>
-                    <small>Selektiraj tekst i čuaj ga čitanog naglas</small>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="highlight-headings" class="accessibility-checkbox">
-                      Istakni naslove
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="highlight-links" class="accessibility-checkbox">
-                      Istakni sve linkove
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label for="reading-guide">Vođica za čitanje:</label>
-                    <select id="reading-guide" class="accessibility-select">
-                      <option value="none">Nema</option>
-                      <option value="line">Linija ispod teksta</option>
-                      <option value="focus">Fokus na redak</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- NAVIGACIJA -->
-                <div class="accessibility-section">
-                  <h3>⌨️ Navigacija i kontrola</h3>
-                  
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="keyboard-nav" class="accessibility-checkbox">
-                      Ojačana tipkovnička navigacija
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="skip-links" class="accessibility-checkbox">
-                      Prikaži "Preskoči" linkove
-                    </label>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label for="animation-speed">Brzina animacija:</label>
-                    <select id="animation-speed" class="accessibility-select">
-                      <option value="normal">Normalna</option>
-                      <option value="slow">Spora</option>
-                      <option value="none">Bez animacija</option>
-                    </select>
-                  </div>
-
-                  <div class="accessibility-item">
-                    <label>
-                      <input type="checkbox" id="focus-indicator" class="accessibility-checkbox">
-                      Ojačan fokus indikator
-                    </label>
-                  </div>
-                </div>
-
-                <!-- KURSOR I TOČKICE -->
-                <div class="accessibility-section">
-                  <h3>🖱️ Kursor i pointer</h3>
-                  
-                  <div class="accessibility-item">
-                    <label for="cursor-style">Stil kursora:</label>
-                    <select id="cursor-style" class="accessibility-select">
-                      <option value="default">Standardni</option>
-                      <option value="large">Veliki</option>
-                      <option value="inverted">Invertirani</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-
-        // Dodaj widget u DOM
-        document.body.insertAdjacentHTML('beforeend', accessibilityHTML);
-
-        // Inicijaliziraj nakon što je dodan u DOM
-        document.addEventListener('DOMContentLoaded', initAccessibility);
-
-        function initAccessibility() {
-          const toggle = document.getElementById('accessibility-toggle');
-          const panel = document.getElementById('accessibility-panel');
-          const closeBtn = document.getElementById('accessibility-close');
-
-          // Toggle panel
-          toggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-          });
-
-          // Close button
-          closeBtn.addEventListener('click', function() {
-            panel.style.display = 'none';
-          });
-
-          // Close when clicking outside
-          document.addEventListener('click', function(event) {
-            if (!event.target.closest('.accessibility-widget')) {
-              panel.style.display = 'none';
-            }
-          });
-
-          // Font size controls
-          const fontSizeSlider = document.getElementById('font-size');
-          const fontSizeDisplay = document.getElementById('font-size-display');
-          const sizeDecrease = document.getElementById('size-decrease');
-          const sizeReset = document.getElementById('size-reset');
-
-          fontSizeSlider.addEventListener('input', function() {
-            const size = this.value;
-            fontSizeDisplay.textContent = size + '%';
-            document.documentElement.style.fontSize = (size / 100) * 16 + 'px';
-            localStorage.setItem('fontSizePreference', size);
-          });
-
-          sizeDecrease.addEventListener('click', function() {
-            fontSizeSlider.value = Math.max(80, parseInt(fontSizeSlider.value) - 10);
-            fontSizeSlider.dispatchEvent(new Event('input'));
-          });
-
-          sizeReset.addEventListener('click', function() {
-            fontSizeSlider.value = 100;
-            fontSizeSlider.dispatchEvent(new Event('input'));
-          });
-
-          // Checkboxes
-          document.getElementById('letter-spacing').addEventListener('change', function() {
-            document.body.classList.toggle('wide-letter-spacing');
-            localStorage.setItem('letterSpacing', this.checked);
-          });
-
-          document.getElementById('line-height').addEventListener('change', function() {
-            document.body.classList.toggle('wide-line-spacing');
-            localStorage.setItem('lineHeight', this.checked);
-          });
-
-          document.getElementById('desaturate').addEventListener('change', function() {
-            document.body.classList.toggle('desaturated');
-            localStorage.setItem('desaturate', this.checked);
-          });
-
-          document.getElementById('underline-links').addEventListener('change', function() {
-            document.body.classList.toggle('underline-links');
-            localStorage.setItem('underlineLinks', this.checked);
-          });
-
-          document.getElementById('highlight-headings').addEventListener('change', function() {
-            document.body.classList.toggle('highlight-headings');
-            localStorage.setItem('highlightHeadings', this.checked);
-          });
-
-          document.getElementById('highlight-links').addEventListener('change', function() {
-            document.body.classList.toggle('highlight-links');
-            localStorage.setItem('highlightLinks', this.checked);
-          });
-
-          // Theme buttons
-          document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-              document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-              this.classList.add('active');
-              const theme = this.dataset.theme;
-              document.body.classList.remove('dark-theme', 'blue-theme', 'yellow-theme');
-              if (theme !== 'light') {
-                document.body.classList.add(theme + '-theme');
-              }
-              localStorage.setItem('themePreference', theme);
-            });
-          });
-
-          // Load saved preferences
-          loadAccessibilityPreferences();
-        }
-
-        function loadAccessibilityPreferences() {
-          // Font size
-          const savedFontSize = localStorage.getItem('fontSizePreference') || '100';
-          const fontSizeSlider = document.getElementById('font-size');
-          fontSizeSlider.value = savedFontSize;
-          fontSizeSlider.dispatchEvent(new Event('input'));
-
-          // Other preferences
-          if (localStorage.getItem('letterSpacing') === 'true') {
-            document.getElementById('letter-spacing').checked = true;
-            document.body.classList.add('wide-letter-spacing');
-          }
-          if (localStorage.getItem('lineHeight') === 'true') {
-            document.getElementById('line-height').checked = true;
-            document.body.classList.add('wide-line-spacing');
-          }
-          if (localStorage.getItem('desaturate') === 'true') {
-            document.getElementById('desaturate').checked = true;
-            document.body.classList.add('desaturated');
-          }
-          if (localStorage.getItem('underlineLinks') === 'true') {
-            document.getElementById('underline-links').checked = true;
-            document.body.classList.add('underline-links');
-          }
-          if (localStorage.getItem('highlightHeadings') === 'true') {
-            document.getElementById('highlight-headings').checked = true;
-            document.body.classList.add('highlight-headings');
-          }
-          if (localStorage.getItem('highlightLinks') === 'true') {
-            document.getElementById('highlight-links').checked = true;
-            document.body.classList.add('highlight-links');
-          }
-
-          // Theme
-          const savedTheme = localStorage.getItem('themePreference') || 'light';
-          if (savedTheme !== 'light') {
-            document.body.classList.add(savedTheme + '-theme');
-            document.querySelector(`[data-theme="${savedTheme}"]`).classList.add('active');
-          }
-        }
-      })();
-    </script>
+    <script src="js/accessibility-widget.js"></script>
 
 </body>
 </html>
