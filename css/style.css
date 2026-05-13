@@ -437,13 +437,140 @@ body {
 }
 
 /* ============================================
-   PLUTAJUĆI ELEMENTI - DESNA STRANA
+   PLUTAJUĆI ELEMENTI - DONJE UGAO
    ============================================ */
 
-/* Accessibility widget - GORNJI DIO (iznad back-to-top) */
+/* Back to top - DESNI DIO */
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 995;
+    background-color: #00ff99;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover, .back-to-top:focus {
+    background-color: #00ffcc;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
+}
+
+/* STATS WIDGET - LIJEVI DIO */
+.stats-widget {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 996;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.stats-toggle {
+    background-color: #00ff99;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-toggle:hover {
+    background-color: #00ffcc;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
+}
+
+.stats-panel {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    background: #fff;
+    border: 2px solid #00ff99;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 280px;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 997;
+}
+
+.stats-header {
+    background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
+    color: #000;
+    padding: 1rem;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.stats-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+}
+
+.stats-content {
+    padding: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.stat-value {
+    color: #00ff99;
+    font-weight: bold;
+}
+
+.stat-divider {
+    height: 1px;
+    background: #00ff99;
+    margin: 0.8rem 0;
+}
+
+/* ACCESSIBILITY WIDGET - GORNJI DESNI DIO */
 .accessibility-widget {
     position: fixed;
-    bottom: 70px;
+    bottom: 200px;
     right: 2rem;
     z-index: 996;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -630,133 +757,6 @@ body {
     color: #0088ff;
 }
 
-/* Back to top - DONJI DIO */
-.back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 995;
-    background-color: #00ff99;
-    color: #000;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.8rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
-    transition: all 0.3s ease;
-}
-
-.back-to-top:hover, .back-to-top:focus {
-    background-color: #00ffcc;
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
-}
-
-/* STATS WIDGET - LIJEVI DIO */
-.stats-widget {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 996;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.stats-toggle {
-    background-color: #00ff99;
-    color: #000;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 255, 153, 0.4);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.stats-toggle:hover {
-    background-color: #00ffcc;
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0, 255, 153, 0.5);
-}
-
-.stats-panel {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    background: #fff;
-    border: 2px solid #00ff99;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    width: 280px;
-    max-height: 500px;
-    overflow-y: auto;
-    z-index: 997;
-}
-
-.stats-header {
-    background: linear-gradient(135deg, #00ff99 0%, #00ffcc 100%);
-    color: #000;
-    padding: 1rem;
-    border-radius: 6px 6px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.stats-header h3 {
-    margin: 0;
-    font-size: 1rem;
-}
-
-.stats-close {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #000;
-    font-weight: bold;
-}
-
-.stats-content {
-    padding: 1rem;
-}
-
-.stat-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid #eee;
-    font-size: 0.9rem;
-}
-
-.stat-item:last-child {
-    border-bottom: none;
-}
-
-.stat-label {
-    font-weight: 600;
-    color: #333;
-}
-
-.stat-value {
-    color: #00ff99;
-    font-weight: bold;
-}
-
-.stat-divider {
-    height: 1px;
-    background: #00ff99;
-    margin: 0.8rem 0;
-}
-
 /* ============================================
    ACCESSIBILITY MODE - Primijenjeni stilovi
    ============================================ */
@@ -928,9 +928,9 @@ body.yellow-theme .hero-section {
         width: 250px;
     }
 
-    /* Accessibility widget - iznad back-to-top */
+    /* Accessibility widget */
     .accessibility-widget {
-        bottom: 70px;
+        bottom: 160px;
         right: 1.5rem;
     }
 
@@ -977,9 +977,9 @@ body.yellow-theme .hero-section {
         right: auto;
     }
 
-    /* Accessibility widget - iznad back-to-top */
+    /* Accessibility widget - gore desno */
     .accessibility-widget {
-        bottom: 55px;
+        bottom: 140px;
         right: 1rem;
     }
 
